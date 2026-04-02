@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#0a1628">
 <title>Novatravel · ¿Listo para viajar?</title>
 <style>
-  /* ── Variables ─────────────────────────────────────── */
   :root {
     --navy:   #0a1628;
     --ocean:  #0e3a6e;
@@ -21,10 +20,7 @@
     --wa:     #25d366;
     --wa2:    #128c4a;
   }
-
-  /* ── Reset ─────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'Georgia', 'Times New Roman', serif;
     background: var(--navy);
@@ -33,8 +29,6 @@
     overflow-x: hidden;
     position: relative;
   }
-
-  /* ── Background decoration ─────────────────────────── */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -44,16 +38,12 @@
     pointer-events: none;
     z-index: 0;
   }
-
-  /* ── Waves decorativas ─────────────────────────────── */
   .wave-top {
     position: fixed; top: 0; left: 0; right: 0;
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--gold), var(--sky), transparent);
     z-index: 10;
   }
-
-  /* ── Layout ────────────────────────────────────────── */
   .container {
     position: relative; z-index: 1;
     max-width: 480px;
@@ -63,20 +53,13 @@
     display: flex;
     flex-direction: column;
   }
-
-  /* ── Header ────────────────────────────────────────── */
-  header {
-    text-align: center;
-    padding: 36px 0 28px;
-  }
-
+  header { text-align: center; padding: 36px 0 28px; }
   .logo-wrap {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 18px;
   }
-
   .logo-icon {
     width: 44px; height: 44px;
     background: linear-gradient(135deg, var(--sky), var(--gold));
@@ -85,7 +68,6 @@
     font-size: 22px;
     box-shadow: 0 4px 20px rgba(26,110,181,0.4);
   }
-
   .logo-text {
     font-size: 22px;
     font-weight: bold;
@@ -95,55 +77,23 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
-  header h1 {
-    font-size: 26px;
-    line-height: 1.25;
-    margin-bottom: 10px;
-    font-style: italic;
-  }
-
+  header h1 { font-size: 26px; line-height: 1.25; margin-bottom: 10px; font-style: italic; }
   header h1 span {
     background: linear-gradient(90deg, var(--gold), var(--gold2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
-  header p {
-    color: var(--muted);
-    font-size: 14px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.5;
-  }
-
-  /* ── Progreso ──────────────────────────────────────── */
-  .progress-bar {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 28px;
-    justify-content: center;
-  }
-
+  header p { color: var(--muted); font-size: 14px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.5; }
+  .progress-bar { display: flex; gap: 6px; margin-bottom: 28px; justify-content: center; }
   .progress-dot {
     width: 8px; height: 8px;
     border-radius: 50%;
     background: var(--border);
     transition: all 0.4s ease;
   }
-
-  .progress-dot.active {
-    background: var(--gold);
-    box-shadow: 0 0 8px var(--gold);
-    width: 24px;
-    border-radius: 4px;
-  }
-
-  .progress-dot.done {
-    background: var(--sky);
-  }
-
-  /* ── Tarjeta de pregunta ───────────────────────────── */
+  .progress-dot.active { background: var(--gold); box-shadow: 0 0 8px var(--gold); width: 24px; border-radius: 4px; }
+  .progress-dot.done { background: var(--sky); }
   .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -153,12 +103,10 @@
     -webkit-backdrop-filter: blur(8px);
     animation: slideIn 0.35s ease forwards;
   }
-
   @keyframes slideIn {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
   .q-step {
     font-size: 11px;
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -167,21 +115,8 @@
     color: var(--gold);
     margin-bottom: 10px;
   }
-
-  .q-text {
-    font-size: 20px;
-    line-height: 1.35;
-    margin-bottom: 22px;
-    font-style: italic;
-  }
-
-  /* ── Opciones ──────────────────────────────────────── */
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
+  .q-text { font-size: 20px; line-height: 1.35; margin-bottom: 22px; font-style: italic; }
+  .options { display: flex; flex-direction: column; gap: 10px; }
   .opt-btn {
     display: flex;
     align-items: center;
@@ -199,27 +134,9 @@
     -webkit-tap-highlight-color: transparent;
     width: 100%;
   }
-
-  .opt-btn:active,
-  .opt-btn:hover {
-    background: rgba(26,110,181,0.2);
-    border-color: var(--sky);
-    transform: translateX(4px);
-  }
-
-  .opt-btn.selected {
-    background: rgba(26,110,181,0.25);
-    border-color: var(--sky);
-  }
-
-  .opt-icon {
-    font-size: 20px;
-    flex-shrink: 0;
-    width: 28px;
-    text-align: center;
-  }
-
-  /* ── Resultado ─────────────────────────────────────── */
+  .opt-btn:active, .opt-btn:hover { background: rgba(26,110,181,0.2); border-color: var(--sky); transform: translateX(4px); }
+  .opt-btn.selected { background: rgba(26,110,181,0.25); border-color: var(--sky); }
+  .opt-icon { font-size: 20px; flex-shrink: 0; width: 28px; text-align: center; }
   .result-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -230,10 +147,7 @@
     display: none;
     animation: slideIn 0.4s ease forwards;
   }
-
   .result-card.visible { display: block; }
-
-  /* Potencial */
   .result-potential .badge {
     display: inline-flex;
     align-items: center;
@@ -249,21 +163,8 @@
     color: var(--gold2);
     margin-bottom: 16px;
   }
-
-  .result-title {
-    font-size: 22px;
-    margin-bottom: 10px;
-    font-style: italic;
-  }
-
-  .result-sub {
-    color: var(--muted);
-    font-size: 14px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.55;
-    margin-bottom: 24px;
-  }
-
+  .result-title { font-size: 22px; margin-bottom: 10px; font-style: italic; }
+  .result-sub { color: var(--muted); font-size: 14px; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.55; margin-bottom: 24px; }
   .perfil-box {
     background: rgba(26,110,181,0.12);
     border: 1px solid rgba(26,110,181,0.3);
@@ -271,22 +172,8 @@
     padding: 16px;
     margin-bottom: 24px;
   }
-
-  .perfil-label {
-    font-size: 11px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--sky);
-    margin-bottom: 6px;
-  }
-
-  .perfil-value {
-    font-size: 17px;
-    font-style: italic;
-  }
-
-  /* Botón WhatsApp */
+  .perfil-label { font-size: 11px; font-family: 'Helvetica Neue', Arial, sans-serif; letter-spacing: 2px; text-transform: uppercase; color: var(--sky); margin-bottom: 6px; }
+  .perfil-value { font-size: 17px; font-style: italic; }
   .wa-btn {
     display: flex;
     align-items: center;
@@ -307,19 +194,9 @@
     transition: transform 0.2s, box-shadow 0.2s;
     -webkit-tap-highlight-color: transparent;
   }
-
   .wa-btn:active { transform: scale(0.97); box-shadow: 0 3px 12px rgba(37,211,102,0.2); }
-
   .wa-icon { font-size: 22px; }
-
-  /* ── Guía del viajero ──────────────────────────────── */
-  .guide-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-
+  .guide-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
   .guide-icon-wrap {
     width: 46px; height: 46px;
     background: rgba(255,255,255,0.06);
@@ -329,16 +206,9 @@
     font-size: 22px;
     flex-shrink: 0;
   }
-
   .guide-header h2 { font-size: 18px; line-height: 1.3; }
   .guide-header p { font-size: 12px; color: var(--muted); font-family: 'Helvetica Neue', Arial, sans-serif; margin-top: 3px; }
-
-  .guide-items {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
+  .guide-items { display: flex; flex-direction: column; gap: 12px; }
   .guide-item {
     background: rgba(255,255,255,0.03);
     border: 1px solid var(--border);
@@ -348,27 +218,9 @@
     gap: 12px;
     align-items: flex-start;
   }
-
-  .guide-item-icon {
-    font-size: 20px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .guide-item-text strong {
-    display: block;
-    font-size: 14px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    margin-bottom: 4px;
-  }
-
-  .guide-item-text p {
-    font-size: 13px;
-    color: var(--muted);
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.5;
-  }
-
+  .guide-item-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .guide-item-text strong { display: block; font-size: 14px; font-family: 'Helvetica Neue', Arial, sans-serif; margin-bottom: 4px; }
+  .guide-item-text p { font-size: 13px; color: var(--muted); font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.5; }
   .guide-note {
     margin-top: 18px;
     padding: 14px 16px;
@@ -380,8 +232,6 @@
     color: #c8a060;
     line-height: 1.55;
   }
-
-  /* ── Reiniciar ─────────────────────────────────────── */
   .reset-btn {
     display: block;
     width: 100%;
@@ -397,25 +247,9 @@
     transition: all 0.2s;
     -webkit-tap-highlight-color: transparent;
   }
-
-  .reset-btn:hover, .reset-btn:active {
-    border-color: var(--sky);
-    color: var(--white);
-  }
-
-  /* ── Footer ────────────────────────────────────────── */
-  footer {
-    margin-top: auto;
-    padding-top: 32px;
-    text-align: center;
-    font-size: 12px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: var(--muted);
-  }
-
+  .reset-btn:hover, .reset-btn:active { border-color: var(--sky); color: var(--white); }
+  footer { margin-top: auto; padding-top: 32px; text-align: center; font-size: 12px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--muted); }
   footer span { color: var(--gold); }
-
-  /* ── Spinner de carga ──────────────────────────────── */
   .loading { display: none; text-align: center; padding: 20px; }
   .loading.active { display: block; }
   .spinner {
@@ -427,8 +261,6 @@
     margin: 0 auto 10px;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ── Utils ─────────────────────────────────────────── */
   .hidden { display: none !important; }
 </style>
 </head>
@@ -438,7 +270,6 @@
 
 <div class="container">
 
-  <!-- Header -->
   <header>
     <div class="logo-wrap">
       <div class="logo-icon">✈</div>
@@ -448,90 +279,73 @@
     <p>3 preguntas rápidas para orientarte mejor.<br>No guardamos ningún dato tuyo.</p>
   </header>
 
-  <!-- Progreso -->
   <div class="progress-bar" id="progressBar">
     <div class="progress-dot active" id="dot0"></div>
     <div class="progress-dot" id="dot1"></div>
     <div class="progress-dot" id="dot2"></div>
   </div>
 
-  <!-- ── PASO 1: Pasaporte ── -->
   <div class="card" id="step0">
     <div class="q-step">Pregunta 1 de 3</div>
     <div class="q-text">¿Tienes pasaporte cubano vigente?</div>
     <div class="options">
-      <button class="opt-btn" onclick="responder(0,'si')">
-        <span class="opt-icon">✅</span>
-        <span>Sí, lo tengo vigente</span>
+      <button class="opt-btn" onclick="responder(0,'si',this)">
+        <span class="opt-icon">✅</span><span>Sí, lo tengo vigente</span>
       </button>
-      <button class="opt-btn" onclick="responder(0,'tramitando')">
-        <span class="opt-icon">🔄</span>
-        <span>Estoy en trámite o prórroga</span>
+      <button class="opt-btn" onclick="responder(0,'tramitando',this)">
+        <span class="opt-icon">🔄</span><span>Estoy en trámite o prórroga</span>
       </button>
-      <button class="opt-btn" onclick="responder(0,'no')">
-        <span class="opt-icon">❌</span>
-        <span>No tengo pasaporte aún</span>
+      <button class="opt-btn" onclick="responder(0,'no',this)">
+        <span class="opt-icon">❌</span><span>No tengo pasaporte aún</span>
       </button>
     </div>
   </div>
 
-  <!-- ── PASO 2: Cuándo viaja ── -->
   <div class="card hidden" id="step1">
     <div class="q-step">Pregunta 2 de 3</div>
     <div class="q-text">¿Cuándo planeas viajar?</div>
     <div class="options">
-      <button class="opt-btn" onclick="responder(1,'pronto')">
-        <span class="opt-icon">🚀</span>
-        <span>En los próximos 3 meses</span>
+      <button class="opt-btn" onclick="responder(1,'pronto',this)">
+        <span class="opt-icon">🚀</span><span>En los próximos 3 meses</span>
       </button>
-      <button class="opt-btn" onclick="responder(1,'6meses')">
-        <span class="opt-icon">📅</span>
-        <span>En 3 a 6 meses</span>
+      <button class="opt-btn" onclick="responder(1,'6meses',this)">
+        <span class="opt-icon">📅</span><span>En 3 a 6 meses</span>
       </button>
-      <button class="opt-btn" onclick="responder(1,'sinplanes')">
-        <span class="opt-icon">🌫</span>
-        <span>Sin fecha definida aún</span>
+      <button class="opt-btn" onclick="responder(1,'sinplanes',this)">
+        <span class="opt-icon">🌫</span><span>Sin fecha definida aún</span>
       </button>
     </div>
   </div>
 
-  <!-- ── PASO 3: Destino ── -->
   <div class="card hidden" id="step2">
     <div class="q-step">Pregunta 3 de 3</div>
     <div class="q-text">¿Ya sabes a dónde quieres ir?</div>
     <div class="options">
-      <button class="opt-btn" onclick="responder(2,'definido')">
-        <span class="opt-icon">🎯</span>
-        <span>Sí, tengo el destino claro</span>
+      <button class="opt-btn" onclick="responder(2,'definido',this)">
+        <span class="opt-icon">🎯</span><span>Sí, tengo el destino claro</span>
       </button>
-      <button class="opt-btn" onclick="responder(2,'pensando')">
-        <span class="opt-icon">🤔</span>
-        <span>Estoy entre varias opciones</span>
+      <button class="opt-btn" onclick="responder(2,'pensando',this)">
+        <span class="opt-icon">🤔</span><span>Estoy entre varias opciones</span>
       </button>
-      <button class="opt-btn" onclick="responder(2,'nodecidido')">
-        <span class="opt-icon">🗺</span>
-        <span>Todavía no lo sé</span>
+      <button class="opt-btn" onclick="responder(2,'nodecidido',this)">
+        <span class="opt-icon">🗺</span><span>Todavía no lo sé</span>
       </button>
     </div>
   </div>
 
-  <!-- Cargando -->
   <div class="loading" id="loading">
     <div class="spinner"></div>
     <p style="font-size:13px;color:var(--muted);font-family:sans-serif;">Analizando tu perfil...</p>
   </div>
 
-  <!-- ── RESULTADO POTENCIAL ── -->
   <div class="result-card result-potential" id="resultPotential">
     <div class="badge">⭐ &nbsp;Cliente Prioritario</div>
     <div class="result-title">¡Tu perfil es ideal<br>para viajar pronto!</div>
     <div class="result-sub">Nuestros asesores pueden ayudarte a concretar tu viaje de forma rápida y segura desde Cuba.</div>
-
     <div class="perfil-box">
       <div class="perfil-label">Tu perfil</div>
       <div class="perfil-value" id="perfilTexto">—</div>
     </div>
-
     <a id="waBtn" class="wa-btn" href="#" target="_blank" rel="noopener">
       <span class="wa-icon">💬</span>
       Hablar con un asesor ahora
@@ -539,9 +353,7 @@
     <button class="reset-btn" onclick="reiniciar()">↺ &nbsp;Hacer el test de nuevo</button>
   </div>
 
-  <!-- ── RESULTADO NO POTENCIAL: GUÍA ── -->
   <div class="result-card" id="resultGuide">
-
     <div class="guide-header">
       <div class="guide-icon-wrap">📖</div>
       <div>
@@ -549,9 +361,7 @@
         <p>Pasos para prepararte antes de viajar</p>
       </div>
     </div>
-
     <div class="guide-items">
-
       <div class="guide-item">
         <div class="guide-item-icon">🪪</div>
         <div class="guide-item-text">
@@ -559,7 +369,6 @@
           <p>Solicítalo en la Dirección de Inmigración de tu municipio. Necesitarás carné de identidad, fotos y el pago de aranceles. El proceso tarda entre 30 y 60 días hábiles.</p>
         </div>
       </div>
-
       <div class="guide-item">
         <div class="guide-item-icon">🔄</div>
         <div class="guide-item-text">
@@ -567,7 +376,6 @@
           <p>Si tu pasaporte está por vencer, puedes solicitar una prórroga de 2 años en cualquier consulado cubano en el exterior o en Inmigración en Cuba. Costo aprox.: 100 CUP + trámites.</p>
         </div>
       </div>
-
       <div class="guide-item">
         <div class="guide-item-icon">🌐</div>
         <div class="guide-item-text">
@@ -575,7 +383,6 @@
           <p>Según el destino, necesitarás visa, tarjeta de turista o solo pasaporte. España, México y Rusia tienen requisitos diferentes. Consúltanos una vez que tengas el pasaporte.</p>
         </div>
       </div>
-
       <div class="guide-item">
         <div class="guide-item-icon">✈️</div>
         <div class="guide-item-text">
@@ -583,7 +390,6 @@
           <p>Los vuelos directos salen principalmente desde La Habana (HAV). Hay conexiones a Madrid, Moscú, Ciudad de México, Panamá y otros. Reserva con mínimo 60 días de antelación.</p>
         </div>
       </div>
-
       <div class="guide-item">
         <div class="guide-item-icon">💰</div>
         <div class="guide-item-text">
@@ -591,7 +397,6 @@
           <p>La mayoría de destinos exige demostrar fondos suficientes. Para Europa, se recomienda al menos €500–€1000 disponibles. Puedes acreditarlo con extracto bancario o carta de invitación.</p>
         </div>
       </div>
-
       <div class="guide-item">
         <div class="guide-item-icon">🛡</div>
         <div class="guide-item-text">
@@ -599,13 +404,10 @@
           <p>Para la mayoría de países, especialmente Schengen, es obligatorio. Cubre gastos médicos, repatriación y cancelaciones. Lo gestionamos junto con tu reserva.</p>
         </div>
       </div>
-
     </div>
-
     <div class="guide-note">
       💡 <strong>Consejo Novatravel:</strong> Empieza tramitando el pasaporte hoy mismo. Cuando lo tengas listo, vuelve a hacer este test y te conectaremos con nuestro equipo para planificar tu viaje.
     </div>
-
     <button class="reset-btn" onclick="reiniciar()">↺ &nbsp;Volver a empezar</button>
   </div>
 
@@ -613,44 +415,34 @@
     <p>© 2025 <span>Novatravel Cuba</span> · Sin cookies · Sin datos guardados</p>
   </footer>
 
-</div><!-- /container -->
+</div>
 
 <script>
-  // ── Estado de la app ──────────────────────────────────
+  // ── CONFIGURACIÓN ──────────────────────────────────────
+  const WA_NUMBER = "18494627511";
+  // ────────────────────────────────────────────────────────
+
   const CLAVES = ['pasaporte', 'cuando', 'destino'];
   let respuestas = {};
-  let pasoActual = 0;
 
-  const WA_NUMBER = "18494627511";
-  const WA_MSG    = "__WA_MSG__";
-
-  // ── Responder una pregunta ────────────────────────────
-  function responder(paso, valor) {
+  function responder(paso, valor, btn) {
     respuestas[CLAVES[paso]] = valor;
 
-    // Resaltar selección brevemente
     const btns = document.querySelectorAll('#step' + paso + ' .opt-btn');
     btns.forEach(b => b.classList.remove('selected'));
-    event.currentTarget.classList.add('selected');
+    btn.classList.add('selected');
 
     setTimeout(() => {
       if (paso < 2) {
-        avanzarPaso(paso);
+        document.getElementById('step' + paso).classList.add('hidden');
+        document.getElementById('step' + (paso + 1)).classList.remove('hidden');
+        actualizarProgreso(paso + 1);
       } else {
         mostrarResultado();
       }
     }, 280);
   }
 
-  // ── Avanzar al siguiente paso ─────────────────────────
-  function avanzarPaso(pasoActual) {
-    document.getElementById('step' + pasoActual).classList.add('hidden');
-    const siguiente = pasoActual + 1;
-    document.getElementById('step' + siguiente).classList.remove('hidden');
-    actualizarProgreso(siguiente);
-  }
-
-  // ── Actualizar barra de progreso ──────────────────────
   function actualizarProgreso(paso) {
     for (let i = 0; i < 3; i++) {
       const dot = document.getElementById('dot' + i);
@@ -660,85 +452,79 @@
     }
   }
 
-  // ── Mostrar resultado ─────────────────────────────────
-  async function mostrarResultado() {
-    // Ocultar pasos, mostrar spinner
+  function mostrarResultado() {
     document.getElementById('step2').classList.add('hidden');
     document.getElementById('progressBar').classList.add('hidden');
     document.getElementById('loading').classList.add('active');
 
-    try {
-      const res = await fetch('/evaluar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(respuestas)
-      });
-      const data = await res.json();
-
-      document.getElementById('loading').classList.remove('active');
-
-      if (data.potencial) {
-        // Cliente potencial → WhatsApp
-        document.getElementById('perfilTexto').textContent = data.perfil;
-        const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`;
-        document.getElementById('waBtn').href = waUrl;
-        document.getElementById('resultPotential').classList.add('visible');
-      } else {
-        // No potencial → Guía
-        document.getElementById('resultGuide').classList.add('visible');
-      }
-
-    } catch (err) {
-      // Fallback si el fetch falla: evaluar en JS
+    // Pequeño delay para mostrar el spinner (UX)
+    setTimeout(() => {
       document.getElementById('loading').classList.remove('active');
       evaluarLocal();
-    }
+    }, 800);
   }
 
-  // ── Fallback sin servidor ─────────────────────────────
+  function generarMensaje(p, c, d, pts) {
+    // Listo para viajar ya
+    if (p === 'si' && c === 'pronto' && d === 'definido')
+      return "¡Hola! Tengo pasaporte vigente, quiero viajar en menos de 3 meses y ya sé a dónde voy. ¿Me ayudan a cerrar todo rápido?";
+    // Listo pero sin destino claro
+    if (p === 'si' && c === 'pronto' && d === 'pensando')
+      return "¡Hola! Tengo pasaporte y quiero viajar pronto, pero aún estoy entre varios destinos. ¿Me pueden orientar?";
+    // Listo pero sin fecha
+    if (p === 'si' && c === 'pronto' && d === 'nodecidido')
+      return "¡Hola! Tengo pasaporte vigente y ganas de viajar pronto, pero todavía no sé a dónde. ¿Qué opciones me recomiendan?";
+    // Pasaporte ok, plazo 6 meses
+    if (p === 'si' && c === '6meses' && d === 'definido')
+      return "¡Hola! Tengo pasaporte y ya sé mi destino, pero viajaría en unos 3 a 6 meses. ¿Cuándo conviene empezar a organizar todo?";
+    if (p === 'si' && c === '6meses')
+      return "¡Hola! Tengo pasaporte vigente y pienso viajar en los próximos 6 meses. ¿Me pueden ayudar a planificarlo con tiempo?";
+    // Pasaporte ok, sin planes fijos
+    if (p === 'si' && c === 'sinplanes' && d === 'definido')
+      return "¡Hola! Tengo pasaporte y destino en mente, aunque todavía sin fecha fija. ¿Pueden darme una idea de costos y tiempos?";
+    if (p === 'si' && c === 'sinplanes')
+      return "¡Hola! Tengo pasaporte vigente pero aún no tengo fecha ni destino definido. Me gustaría explorar opciones con ustedes.";
+    // En trámite, quiere viajar pronto
+    if (p === 'tramitando' && c === 'pronto')
+      return "¡Hola! Estoy tramitando el pasaporte y quiero viajar lo antes posible. ¿Me pueden ayudar a coordinar los tiempos?";
+    if (p === 'tramitando')
+      return "¡Hola! Estoy en proceso con el pasaporte. ¿Puedo ir organizando el viaje mientras lo termino de gestionar?";
+    // Sin pasaporte
+    return null; // va a la guía, no al WhatsApp
+  }
+
   function evaluarLocal() {
     let pts = 0;
     const p = respuestas.pasaporte;
     const c = respuestas.cuando;
     const d = respuestas.destino;
+
     if (p === 'si') pts += 3; else if (p === 'tramitando') pts += 1;
     if (c === 'pronto') pts += 3; else if (c === '6meses') pts += 2;
     if (d === 'definido') pts += 3; else if (d === 'pensando') pts += 1;
 
     if (pts >= 5) {
-      let perfil = pts >= 7 ? 'Viajero listo para despegar 🛫'
-                 : 'Cliente con alto potencial ✈️';
+      const perfil = pts >= 7 ? 'Viajero listo para despegar 🛫' : 'Cliente con alto potencial ✈️';
+      const msg = generarMensaje(p, c, d, pts) || "¡Hola! Acabo de hacer el test en su web y me interesa planificar mi viaje. ¿Me pueden ayudar?";
       document.getElementById('perfilTexto').textContent = perfil;
-      const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSG)}`;
-      document.getElementById('waBtn').href = waUrl;
+      document.getElementById('waBtn').href =
+        'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
       document.getElementById('resultPotential').classList.add('visible');
     } else {
       document.getElementById('resultGuide').classList.add('visible');
     }
   }
 
-  // ── Reiniciar ─────────────────────────────────────────
   function reiniciar() {
     respuestas = {};
-
-    // Ocultar resultados
     document.getElementById('resultPotential').classList.remove('visible');
     document.getElementById('resultGuide').classList.remove('visible');
     document.getElementById('loading').classList.remove('active');
-
-    // Resetear pasos
-    for (let i = 1; i < 3; i++) {
-      document.getElementById('step' + i).classList.add('hidden');
-    }
-    // Limpiar selecciones
+    for (let i = 1; i < 3; i++) document.getElementById('step' + i).classList.add('hidden');
     document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
-
-    // Mostrar paso 0
     document.getElementById('step0').classList.remove('hidden');
     document.getElementById('progressBar').classList.remove('hidden');
     actualizarProgreso(0);
-
-    // Scroll arriba
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
