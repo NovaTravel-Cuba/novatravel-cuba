@@ -547,6 +547,43 @@ function FloatingWhatsApp({ onContact }: { onContact: () => void }) {
   );
 }
 
+function FloatingTelegram() {
+  const [tooltip, setTooltip] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: 1.3, type: "spring" }}
+      className="fixed bottom-24 right-6 z-50 flex items-center gap-2"
+    >
+      {tooltip && (
+        <motion.div
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="bg-background border border-border text-foreground text-sm font-medium px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap"
+        >
+          💬 Chatear con Nova IA
+        </motion.div>
+      )}
+      <a
+        href="https://t.me/Asistente_Novatravel_Bot"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chatear con el asistente de IA en Telegram"
+        onMouseEnter={() => setTooltip(true)}
+        onMouseLeave={() => setTooltip(false)}
+        className="relative bg-[#229ED9] hover:bg-[#1a8bbf] text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-110 flex items-center justify-center"
+      >
+        <div className="absolute inset-0 rounded-full bg-[#229ED9] animate-ping opacity-25"></div>
+        <svg viewBox="0 0 24 24" className="w-7 h-7 relative z-10 fill-current" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 13.67l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.958.889z"/>
+        </svg>
+      </a>
+    </motion.div>
+  );
+}
+
 function Home() {
   const [quizOpen, setQuizOpen] = useState(false);
   const [destContext, setDestContext] = useState<string | null>(null);
@@ -571,6 +608,7 @@ function Home() {
       <Payments onContact={() => openQuiz()} />
       <Footer onContact={() => openQuiz()} />
       <FloatingWhatsApp onContact={() => openQuiz()} />
+      <FloatingTelegram />
 
       <QuizModal
         open={quizOpen}
