@@ -1,8 +1,8 @@
 export const WHATSAPP_NUMBERS = [
-  "50586185543",
-  "50585336104",
-  "12694122984",
   "50582336820",
+  "50558058460",
+  "12694122984",
+  "50586185543",
 ] as const;
 
 export function getRandomWhatsAppNumber(): string {
