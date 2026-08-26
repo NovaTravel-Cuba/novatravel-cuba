@@ -282,10 +282,10 @@ function Destinations({ onContact }: { onContact: (dest?: string) => void }) {
       </div>
 
       <Dialog open={!!selectedDest} onOpenChange={(open) => !open && closeDestModal()}>
-        <DialogContent className="sm:max-w-lg bg-card border-border p-0 overflow-hidden">
+        <DialogContent className="sm:max-w-lg bg-card border-border p-0 max-h-[85dvh] overflow-y-auto overscroll-contain rounded-lg">
           {selectedDest && (
             <>
-              <div className="relative h-40 overflow-hidden">
+              <div className="relative h-40 overflow-hidden shrink-0">
                 <img
                   src={`https://flagcdn.com/w640/${selectedDest.flagCode}.jpg`}
                   alt={`Bandera de ${selectedDest.country}`}
