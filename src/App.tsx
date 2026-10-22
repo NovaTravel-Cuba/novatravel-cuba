@@ -75,7 +75,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-import { destinations } from "./data/destinations";
+import { destinations, destinationImage } from "./data/destinations";
 import { Quiz, QuizModal } from "./components/sections/Quiz";
 import heroImg from "./assets/hero.png";
 
@@ -252,7 +252,7 @@ function Destinations({ onContact }: { onContact: (dest?: string) => void }) {
               >
                 <div className="relative h-32 overflow-hidden">
                   <img
-                    src={`https://flagcdn.com/w640/${dest.flagCode}.jpg`}
+                    src={destinationImage(dest)}
                     alt={`Bandera de ${dest.country}`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
@@ -287,7 +287,7 @@ function Destinations({ onContact }: { onContact: (dest?: string) => void }) {
             <>
               <div className="relative h-40 overflow-hidden shrink-0">
                 <img
-                  src={`https://flagcdn.com/w640/${selectedDest.flagCode}.jpg`}
+                  src={destinationImage(selectedDest)}
                   alt={`Bandera de ${selectedDest.country}`}
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -525,6 +525,7 @@ function Footer({ onContact }: { onContact: () => void }) {
         <div className="text-center text-sm text-muted-foreground border-t border-border/50 pt-8">
           <p>© {new Date().getFullYear()} NovaTravel · Servicios Migratorios Internacionales</p>
           <p className="mt-2 text-xs opacity-70">Operando con seguridad y transparencia.</p>
+          <p className="mt-3 text-xs opacity-40"><a href={`${import.meta.env.BASE_URL}admin.html`} className="hover:text-primary transition-colors">Administración</a></p>
         </div>
       </div>
     </footer>

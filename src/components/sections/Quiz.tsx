@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { buildWhatsAppLink } from "@/lib/whatsapp";
+import { fallbackWhatsAppLink, openWhatsApp } from "@/lib/whatsapp";
 import { destinations } from "@/data/destinations";
 
 type Answers = {
@@ -126,7 +126,8 @@ function QuizInternal({ onClose, destinationContext }: QuizInternalProps) {
 
   const score = calcularPuntaje(answers, destinationContext);
   const calificado = esClientePotencial(score);
-  const waLink = buildWhatsAppLink(getWhatsAppText(answers, score, destinationContext));
+  const waText = getWhatsAppText(answers, score, destinationContext);
+  const waLink = fallbackWhatsAppLink(waText);
 
   const monthOptions = useMemo(
     () => buildMonthOptions(destinationContext || answers.paisInteres),
@@ -318,6 +319,7 @@ function QuizInternal({ onClose, destinationContext }: QuizInternalProps) {
                 </p>
                 <a
                   href={waLink}
+                  onClick={(e) => { e.preventDefault(); void openWhatsApp(waText); }}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#25D366]/20 text-lg"
@@ -400,7 +402,8 @@ export function Quiz() {
   const totalSteps = 4;
   const score = calcularPuntaje(answers, null);
   const calificado = esClientePotencial(score);
-  const waLink = buildWhatsAppLink(getWhatsAppText(answers, score, null));
+  const waText = getWhatsAppText(answers, score, null);
+  const waLink = fallbackWhatsAppLink(waText);
 
   const monthOptions = useMemo(
     () => buildMonthOptions(answers.paisInteres),
@@ -550,6 +553,7 @@ export function Quiz() {
                     </p>
                     <a
                       href={waLink}
+                  onClick={(e) => { e.preventDefault(); void openWhatsApp(waText); }}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#25D366]/20 text-lg"
