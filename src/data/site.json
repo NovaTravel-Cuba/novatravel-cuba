@@ -13,7 +13,7 @@
       "flagCode": "ni",
       "category": "visado",
       "type": "Visado",
-      "price": 1600,
+      "price": 1500,
       "paymentStructure": "Pago íntegro al iniciar",
       "duration": "Una semana",
       "included": [
