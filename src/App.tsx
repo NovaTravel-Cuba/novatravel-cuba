@@ -365,7 +365,17 @@ function Destinations({ onContact }: { onContact: (dest?: string) => void }) {
                     onClick={() => {
                       setSelectedDest(null);
                       const info = `${selectedDest.country} — ${selectedDest.type} (${typeof selectedDest.price === "number" ? `USD ${selectedDest.price.toLocaleString()}` : selectedDest.price})`;
-                      onContact(info);
+                      // Cerrar la ficha hace history.back() (asíncrono). Si el cuestionario se abre
+                      // antes de que termine, ese retroceso lo cierra. Esperamos a que acabe.
+                      let opened = false;
+                      const openQuizNow = () => {
+                        if (opened) return;
+                        opened = true;
+                        window.removeEventListener("popstate", openQuizNow);
+                        onContact(info);
+                      };
+                      window.addEventListener("popstate", openQuizNow);
+                      setTimeout(openQuizNow, 600);
                     }}
                     className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1aaa52] text-white font-semibold py-3.5 px-6 rounded-lg transition-colors shadow-lg text-base"
                   >
