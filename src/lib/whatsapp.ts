@@ -89,6 +89,11 @@ function isInAppBrowser(): boolean {
 
 async function openFromInAppBrowser(text: string): Promise<void> {
   const number = await getNextWhatsAppNumber();
-  // Enlace propio de la app: lo abre WhatsApp instalado directamente, sin pasar por wa.me
-  window.location.href = `whatsapp://send?phone=${number}&text=${encodeURIComponent(text)}`;
+  const q = encodeURIComponent(text);
+  // Android: formato "intent" (lo reconoce el navegador de Facebook y abre la app instalada,
+  // sea WhatsApp o WhatsApp Business). Otros sistemas: enlace propio de la app.
+  const url = /Android/i.test(navigator.userAgent)
+    ? `intent://send?phone=${number}&text=${q}#Intent;scheme=whatsapp;end`
+    : `whatsapp://send?phone=${number}&text=${q}`;
+  window.location.href = url;
 }
