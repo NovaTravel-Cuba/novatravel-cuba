@@ -60,6 +60,7 @@ export function fallbackWhatsAppLink(text: string): string {
  * no la bloquee) y luego se redirige al número asignado.
  */
 export async function openWhatsApp(text: string): Promise<void> {
+  if (isInAppBrowser()) return openFromInAppBrowser(text);
   const win = window.open("", "_blank");
   if (win) {
     win.opener = null;
@@ -76,4 +77,18 @@ export async function openWhatsApp(text: string): Promise<void> {
   const url = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
   if (win) win.location.href = url;
   else window.location.href = url;
+}
+
+/**
+ * Navegadores internos de Facebook, Messenger e Instagram: no abren apps instaladas
+ * desde enlaces wa.me (WhatsApp responde "instalar WhatsApp"). Chrome sí lo hace.
+ */
+function isInAppBrowser(): boolean {
+  return typeof navigator !== "undefined" && /FBAN|FBAV|FB_IAB|FB4A|FBIOS|FBLC|Messenger|Instagram/i.test(navigator.userAgent);
+}
+
+async function openFromInAppBrowser(text: string): Promise<void> {
+  const number = await getNextWhatsAppNumber();
+  // Enlace propio de la app: lo abre WhatsApp instalado directamente, sin pasar por wa.me
+  window.location.href = `whatsapp://send?phone=${number}&text=${encodeURIComponent(text)}`;
 }
