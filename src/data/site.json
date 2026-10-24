@@ -76,6 +76,37 @@
       "image": ""
     },
     {
+      "id": "canada",
+      "country": "Canadá",
+      "flag": "🇨🇦",
+      "flagCode": "ca",
+      "category": "contrato",
+      "type": "Visado por contrato laboral",
+      "price": 5400,
+      "paymentStructure": "50% inicial 50% al finalizar el proceso",
+      "duration": "2 meses ",
+      "included": [
+        "Boleto de avión internacional",
+        "Asesoría y gestión de visa de trabajo",
+        "Gestión de contrato laboral",
+        "Reservación de hotel al llegar",
+        "Recepción en aeropuerto",
+        "Preparación y revisión de documentos",
+        "Acompañamiento durante todo el proceso"
+      ],
+      "requirements": [
+        "Llenar formulario de aplicación",
+        "Foto tipo pasaporte 4x4 fondo blanco",
+        "Foto o escaneo del pasaporte vigente",
+        "Currículum básico (si lo tiene) de no, tenerlo lo gestionamos nosotros",
+        "Certificado de antecedentes penales",
+        "Número de teléfono activo",
+        "Disponibilidad para trabajar en Canadá"
+      ],
+      "nota": null,
+      "image": "uploads/paquete-mvlw11x7.jpg"
+    },
+    {
       "id": "mexico",
       "country": "México",
       "flag": "🇲🇽",
