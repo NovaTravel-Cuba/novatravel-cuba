@@ -3,8 +3,9 @@ import { whatsappNumbers } from "@/data/destinations";
 /**
  * Reparto consecutivo (round-robin) de números de WhatsApp.
  *
- * Un contador compartido en internet (counterapi.dev) suma 1 cada vez que un
- * cliente pulsa el botón. El número asignado es: contador % cantidad_de_números.
+ * Un contador compartido en internet (counterapi.dev) suma 1 cada vez que a un
+ * cliente se le muestra el botón de contactar. El número se asigna ANTES de que
+ * el botón se active, así es un enlace directo y funciona en cualquier navegador. El número asignado es: contador % cantidad_de_números.
  * Así: cliente 1 → número 1, cliente 2 → número 2, ... y vuelve a empezar.
  *
  * Si el contador no responde (sin internet, bloqueo, etc.) se usa un respaldo
@@ -52,47 +53,4 @@ export async function getNextWhatsAppNumber(): Promise<string> {
 /** Enlace directo a un número ya asignado (el botón lo usa como un enlace normal). */
 export function whatsAppLinkFor(number: string, text: string): string {
   return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-}
-
-/** Enlace sin asignación de turno (solo como respaldo mientras se reserva el número). */
-export function fallbackWhatsAppLink(text: string): string {
-  return `https://wa.me/${numbers()[0]}?text=${encodeURIComponent(text)}`;
-}
-
-/**
- * Abre WhatsApp con el siguiente número de la rotación.
- * La pestaña se abre al instante (dentro del toque del usuario, para que el móvil
- * no la bloquee) y luego se redirige al número asignado.
- */
-export async function openWhatsApp(text: string): Promise<void> {
-  if (isInAppBrowser()) return openFromInAppBrowser(text);
-  const win = window.open("", "_blank");
-  if (win) {
-    win.opener = null;
-    try {
-      win.document.write(
-        '<meta name="viewport" content="width=device-width,initial-scale=1">' +
-          '<body style="margin:0;display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#0b0b0f;color:#fff">Conectando con un asesor…</body>',
-      );
-    } catch {
-      /* ignorar */
-    }
-  }
-  const number = await getNextWhatsAppNumber();
-  const url = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-  if (win) win.location.href = url;
-  else window.location.href = url;
-}
-
-/**
- * Navegadores internos de Facebook, Messenger e Instagram: no abren apps instaladas
- * desde enlaces wa.me (WhatsApp responde "instalar WhatsApp"). Chrome sí lo hace.
- */
-function isInAppBrowser(): boolean {
-  return typeof navigator !== "undefined" && /FBAN|FBAV|FB_IAB|FB4A|FBIOS|FBLC|Messenger|Instagram/i.test(navigator.userAgent);
-}
-
-async function openFromInAppBrowser(text: string): Promise<void> {
-  const number = await getNextWhatsAppNumber();
-  window.location.href = whatsAppLinkFor(number, text);
 }

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ChevronRight, CalendarDays, MapPin, XCircle, MessageCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { fallbackWhatsAppLink, getNextWhatsAppNumber, openWhatsApp, whatsAppLinkFor } from "@/lib/whatsapp";
+import { getNextWhatsAppNumber, whatsAppLinkFor } from "@/lib/whatsapp";
 import { destinations } from "@/data/destinations";
 
 type Answers = {
@@ -129,21 +129,14 @@ function QuizInternal({ onClose, destinationContext }: QuizInternalProps) {
   const waText = getWhatsAppText(answers, score, destinationContext);
   // El número se reserva al aparecer el resultado, así el botón es un enlace directo (funciona en el navegador de Facebook)
   const [waNumber, setWaNumber] = useState<string | null>(null);
+  const waRequested = useRef(false);
   const onResult = step === 5 && calificado;
   useEffect(() => {
-    if (!onResult) {
-      setWaNumber(null);
-      return;
-    }
-    let alive = true;
-    void getNextWhatsAppNumber().then((n) => {
-      if (alive) setWaNumber(n);
-    });
-    return () => {
-      alive = false;
-    };
+    if (!onResult || waRequested.current) return;
+    waRequested.current = true; // un solo turno por cuestionario
+    void getNextWhatsAppNumber().then(setWaNumber);
   }, [onResult]);
-  const waLink = waNumber ? whatsAppLinkFor(waNumber, waText) : fallbackWhatsAppLink(waText);
+  const waLink = waNumber ? whatsAppLinkFor(waNumber, waText) : null;
 
   const monthOptions = useMemo(
     () => buildMonthOptions(destinationContext || answers.paisInteres),
@@ -334,14 +327,13 @@ function QuizInternal({ onClose, destinationContext }: QuizInternalProps) {
                   Tu perfil califica para iniciar el proceso migratorio. Un asesor de NovaTravel puede atenderte de inmediato.
                 </p>
                 <a
-                  href={waLink}
-                  onClick={waNumber ? undefined : (e) => { e.preventDefault(); void openWhatsApp(waText); }}
+                  href={waLink ?? undefined}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#25D366]/20 text-lg"
+                  className={`flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#25D366]/20 text-lg ${waLink ? "" : "opacity-60 pointer-events-none"}`}
                 >
                   <MessageCircle className="w-6 h-6" />
-                  Hablar con un asesor ahora
+                  {waLink ? "Hablar con un asesor ahora" : "Asignando asesor…"}
                 </a>
                 {onClose && (
                   <button onClick={onClose} className="text-sm text-muted-foreground hover:text-white transition-colors mt-2">
@@ -421,21 +413,14 @@ export function Quiz() {
   const waText = getWhatsAppText(answers, score, null);
   // El número se reserva al aparecer el resultado, así el botón es un enlace directo (funciona en el navegador de Facebook)
   const [waNumber, setWaNumber] = useState<string | null>(null);
+  const waRequested = useRef(false);
   const onResult = step === 5 && calificado;
   useEffect(() => {
-    if (!onResult) {
-      setWaNumber(null);
-      return;
-    }
-    let alive = true;
-    void getNextWhatsAppNumber().then((n) => {
-      if (alive) setWaNumber(n);
-    });
-    return () => {
-      alive = false;
-    };
+    if (!onResult || waRequested.current) return;
+    waRequested.current = true; // un solo turno por cuestionario
+    void getNextWhatsAppNumber().then(setWaNumber);
   }, [onResult]);
-  const waLink = waNumber ? whatsAppLinkFor(waNumber, waText) : fallbackWhatsAppLink(waText);
+  const waLink = waNumber ? whatsAppLinkFor(waNumber, waText) : null;
 
   const monthOptions = useMemo(
     () => buildMonthOptions(answers.paisInteres),
@@ -584,14 +569,13 @@ export function Quiz() {
                       Tu perfil califica para iniciar el proceso migratorio. Un asesor puede atenderte de inmediato.
                     </p>
                     <a
-                      href={waLink}
-                  onClick={waNumber ? undefined : (e) => { e.preventDefault(); void openWhatsApp(waText); }}
+                      href={waLink ?? undefined}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#25D366]/20 text-lg"
+                      className={`flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#25D366]/20 text-lg ${waLink ? "" : "opacity-60 pointer-events-none"}`}
                     >
                       <MessageCircle className="w-6 h-6" />
-                      Hablar con un asesor por WhatsApp
+                      {waLink ? "Hablar con un asesor por WhatsApp" : "Asignando asesor…"}
                     </a>
                   </motion.div>
                 )}
