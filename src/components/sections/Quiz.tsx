@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ChevronRight, CalendarDays, MapPin, XCircle, MessageCircle, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { fallbackWhatsAppLink, openWhatsApp } from "@/lib/whatsapp";
+import { fallbackWhatsAppLink, getNextWhatsAppNumber, openWhatsApp, whatsAppLinkFor } from "@/lib/whatsapp";
 import { destinations } from "@/data/destinations";
 
 type Answers = {
@@ -127,7 +127,23 @@ function QuizInternal({ onClose, destinationContext }: QuizInternalProps) {
   const score = calcularPuntaje(answers, destinationContext);
   const calificado = esClientePotencial(score);
   const waText = getWhatsAppText(answers, score, destinationContext);
-  const waLink = fallbackWhatsAppLink(waText);
+  // El número se reserva al aparecer el resultado, así el botón es un enlace directo (funciona en el navegador de Facebook)
+  const [waNumber, setWaNumber] = useState<string | null>(null);
+  const onResult = step === 5 && calificado;
+  useEffect(() => {
+    if (!onResult) {
+      setWaNumber(null);
+      return;
+    }
+    let alive = true;
+    void getNextWhatsAppNumber().then((n) => {
+      if (alive) setWaNumber(n);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [onResult]);
+  const waLink = waNumber ? whatsAppLinkFor(waNumber, waText) : fallbackWhatsAppLink(waText);
 
   const monthOptions = useMemo(
     () => buildMonthOptions(destinationContext || answers.paisInteres),
@@ -319,7 +335,7 @@ function QuizInternal({ onClose, destinationContext }: QuizInternalProps) {
                 </p>
                 <a
                   href={waLink}
-                  onClick={(e) => { e.preventDefault(); void openWhatsApp(waText); }}
+                  onClick={waNumber ? undefined : (e) => { e.preventDefault(); void openWhatsApp(waText); }}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#25D366]/20 text-lg"
@@ -403,7 +419,23 @@ export function Quiz() {
   const score = calcularPuntaje(answers, null);
   const calificado = esClientePotencial(score);
   const waText = getWhatsAppText(answers, score, null);
-  const waLink = fallbackWhatsAppLink(waText);
+  // El número se reserva al aparecer el resultado, así el botón es un enlace directo (funciona en el navegador de Facebook)
+  const [waNumber, setWaNumber] = useState<string | null>(null);
+  const onResult = step === 5 && calificado;
+  useEffect(() => {
+    if (!onResult) {
+      setWaNumber(null);
+      return;
+    }
+    let alive = true;
+    void getNextWhatsAppNumber().then((n) => {
+      if (alive) setWaNumber(n);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [onResult]);
+  const waLink = waNumber ? whatsAppLinkFor(waNumber, waText) : fallbackWhatsAppLink(waText);
 
   const monthOptions = useMemo(
     () => buildMonthOptions(answers.paisInteres),
@@ -553,7 +585,7 @@ export function Quiz() {
                     </p>
                     <a
                       href={waLink}
-                  onClick={(e) => { e.preventDefault(); void openWhatsApp(waText); }}
+                  onClick={waNumber ? undefined : (e) => { e.preventDefault(); void openWhatsApp(waText); }}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold py-4 px-6 rounded-lg transition-colors shadow-lg shadow-[#25D366]/20 text-lg"

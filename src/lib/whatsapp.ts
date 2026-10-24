@@ -49,7 +49,12 @@ export async function getNextWhatsAppNumber(): Promise<string> {
   return list[((turn % list.length) + list.length) % list.length];
 }
 
-/** Enlace sin asignación de turno (solo como href de respaldo). */
+/** Enlace directo a un número ya asignado (el botón lo usa como un enlace normal). */
+export function whatsAppLinkFor(number: string, text: string): string {
+  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+}
+
+/** Enlace sin asignación de turno (solo como respaldo mientras se reserva el número). */
 export function fallbackWhatsAppLink(text: string): string {
   return `https://wa.me/${numbers()[0]}?text=${encodeURIComponent(text)}`;
 }
@@ -89,11 +94,5 @@ function isInAppBrowser(): boolean {
 
 async function openFromInAppBrowser(text: string): Promise<void> {
   const number = await getNextWhatsAppNumber();
-  const q = encodeURIComponent(text);
-  // Android: formato "intent" (lo reconoce el navegador de Facebook y abre la app instalada,
-  // sea WhatsApp o WhatsApp Business). Otros sistemas: enlace propio de la app.
-  const url = /Android/i.test(navigator.userAgent)
-    ? `intent://send?phone=${number}&text=${q}#Intent;scheme=whatsapp;end`
-    : `whatsapp://send?phone=${number}&text=${q}`;
-  window.location.href = url;
+  window.location.href = whatsAppLinkFor(number, text);
 }
