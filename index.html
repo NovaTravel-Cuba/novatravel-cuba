@@ -4,6 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>NovaTravel</title>
+        <script>
+      /* nova-diag: si la página queda en blanco, muestra el error en pantalla */
+      (function () {
+        function show(msg) {
+          var r = document.getElementById("root");
+          if (r && r.childNodes.length) return;
+          var d = document.createElement("pre");
+          d.style.cssText = "white-space:pre-wrap;word-break:break-word;padding:16px;font:13px/1.4 monospace;color:#fff;background:#111;margin:0";
+          d.textContent = "NovaTravel - error al cargar:\n" + msg + "\n\nUA: " + navigator.userAgent;
+          document.body.appendChild(d);
+        }
+        window.addEventListener("error", function (e) {
+          var where = e.filename || (e.target && (e.target.src || e.target.href)) || "";
+          var m = (e.message || "recurso no cargó") + " " + where + ":" + (e.lineno || "");
+          setTimeout(function () { show(m); }, 1500);
+        }, true);
+        window.addEventListener("unhandledrejection", function (e) {
+          var m = "Promise: " + ((e.reason && e.reason.message) || e.reason);
+          setTimeout(function () { show(m); }, 1500);
+        });
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
