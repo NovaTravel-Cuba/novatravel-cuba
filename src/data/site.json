@@ -205,6 +205,31 @@
       "image": ""
     },
     {
+      "id": "espana",
+      "country": "España",
+      "flag": "🇪🇸",
+      "flagCode": "es",
+      "category": "visado",
+      "type": "Visado Schengen",
+      "price": 2600,
+      "paymentStructure": "50% inicial · 50% al finalizar",
+      "duration": "2 meses a 2 meses y medio",
+      "included": [
+        "Gestión de visado",
+        "Reservación de vuelo",
+        "Reservación de hotel",
+        "Seguro médico internacional"
+      ],
+      "requirements": [
+        "Foto 4×4",
+        "Foto del pasaporte",
+        "Relleno de formulario",
+        "Documentación adicional solicitada por el consulado"
+      ],
+      "nota": null,
+      "image": ""
+    },
+    {
       "id": "brasil",
       "country": "Brasil",
       "flag": "🇧🇷",
@@ -244,31 +269,6 @@
       ],
       "requirements": [],
       "nota": "No incluye gestión de visa.",
-      "image": ""
-    },
-    {
-      "id": "espana",
-      "country": "España",
-      "flag": "🇪🇸",
-      "flagCode": "es",
-      "category": "visado",
-      "type": "Visado Schengen",
-      "price": 2600,
-      "paymentStructure": "50% inicial · 50% al finalizar",
-      "duration": "2 meses a 2 meses y medio",
-      "included": [
-        "Gestión de visado",
-        "Reservación de vuelo",
-        "Reservación de hotel",
-        "Seguro médico internacional"
-      ],
-      "requirements": [
-        "Foto 4×4",
-        "Foto del pasaporte",
-        "Relleno de formulario",
-        "Documentación adicional solicitada por el consulado"
-      ],
-      "nota": null,
       "image": ""
     },
     {
