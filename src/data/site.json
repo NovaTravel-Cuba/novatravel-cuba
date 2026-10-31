@@ -69,18 +69,28 @@
       "country": "Surinam",
       "flag": "🇸🇷",
       "flagCode": "sr",
-      "category": "boleto",
+      "category": "visado",
       "type": "Emisión de boleto aéreo",
       "price": 1250,
       "paymentStructure": "Pago íntegro",
-      "duration": "12 horas",
+      "duration": "3 dias ",
       "included": [
-        "Vuelo",
+        "Reservación de vuelo",
         "Reservación de hotel",
-        "Seguro médico internacional"
+        "Seguro médico internacional",
+        "Gestión de entrada",
+        "Documentación adicional requerida"
       ],
-      "requirements": [],
-      "nota": "Entrega posterior a la confirmación del pago.",
+      "requirements": [
+        "Pasaporte vigente",
+        "Foto 4x4",
+        "Carnet de identidad",
+        "Dirección particular de residencia",
+        "Número de teléfono",
+        "Correo electrónico",
+        "Estado civil"
+      ],
+      "nota": "Tiempo de emisión de visa 3-4 dias",
       "image": ""
     },
     {
