@@ -113,8 +113,8 @@
       "flagCode": "mx",
       "category": "contrato",
       "type": "Paquete contrato laboral",
-      "price": 3700,
-      "paymentStructure": "Pago íntegro",
+      "price": 3400,
+      "paymentStructure": "50%inicial 50%al finalizar el proceso ",
       "duration": "15 días",
       "included": [
         "Contrato laboral",
