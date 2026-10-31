@@ -47,14 +47,20 @@
       "type": "Emisión de boleto aéreo",
       "price": 1400,
       "paymentStructure": "Pago íntegro",
-      "duration": "12 horas",
+      "duration": "24 horas",
       "included": [
         "Vuelo",
         "Reservación de hotel",
         "Seguro médico internacional",
         "Documentación correspondiente"
       ],
-      "requirements": [],
+      "requirements": [
+        "Foto 4x4",
+        "Pasaporte vigente",
+        "Correo electrónico",
+        "Número de teléfono",
+        "Carnet de identidad"
+      ],
       "nota": "Entrega aproximada: 12 horas después de confirmado el pago..",
       "image": ""
     },
