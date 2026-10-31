@@ -138,18 +138,25 @@
       "country": "Rep. Dominicana",
       "flag": "🇩🇴",
       "flagCode": "do",
-      "category": "boleto",
-      "type": "Boleto aéreo + asistencia de entrada",
-      "price": 1100,
+      "category": "visado",
+      "type": "Boleto aéreo + visa de turismo",
+      "price": 1700,
       "paymentStructure": "Pago íntegro",
-      "duration": "12 horas",
+      "duration": "1 semana ",
       "included": [
-        "Vuelo",
+        "Boleto de Avión",
         "Reservación de hotel",
         "Seguro médico internacional",
-        "Asistencia de entrada (permiso de entrada, no visa)"
+        "Gestión de visa de turismo",
+        "Preparación de expediente consular",
+        "Preparación de carta de solicitud de visa"
       ],
-      "requirements": [],
+      "requirements": [
+        "Pasaporte vigente",
+        "Fotocopia del carnet de identidad",
+        "Fotografía reciente 4x4",
+        "Rellenado de formulario (Asesorando)"
+      ],
       "nota": null,
       "image": ""
     },
