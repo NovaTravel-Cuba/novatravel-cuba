@@ -20,7 +20,9 @@
         "Reservación de vuelo",
         "Reservación de hotel",
         "Seguro médico internacional",
-        "Gestión de visado"
+        "Gestión de visado",
+        "Carta de invitación",
+        "Documentacion de solvencia económica"
       ],
       "requirements": [
         "Fotografías tipo pasaporte",
@@ -149,7 +151,8 @@
         "Seguro médico internacional",
         "Gestión de visa de turismo",
         "Preparación de expediente consular",
-        "Preparación de carta de solicitud de visa"
+        "Preparación de carta de solicitud de visa",
+        "Documento de solvencia económica"
       ],
       "requirements": [
         "Pasaporte vigente",
